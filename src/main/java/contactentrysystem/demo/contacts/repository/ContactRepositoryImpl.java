@@ -1,7 +1,9 @@
 package contactentrysystem.demo.contacts.repository;
 
 import contactentrysystem.demo.contacts.model.Contact;
+import contactentrysystem.demo.contacts.model.Type;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,11 +13,12 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Autowired
     private ContactJpaRepository contactJpaRepository;
+    @Autowired
+    private PhoneJpaRepository phoneJpaRepository;
     @Override
     public Contact create(Contact contact) {
         Contact savedContact = contactJpaRepository.save(contact);
         return savedContact;
-
     }
 
     @Override
@@ -25,8 +28,11 @@ public class ContactRepositoryImpl implements ContactRepository {
 
     @Override
     public void update(Long id, Contact contact) {
+
         Contact savedContact = contactJpaRepository.findById(id).get();
-        contact.setId(savedContact.getId());
+        phoneJpaRepository.deleteByContactId(id);
+        //contactJpaRepository.deleteById(id);
+        contact.setId(id);
         contactJpaRepository.save(contact);
     }
 
@@ -38,5 +44,10 @@ public class ContactRepositoryImpl implements ContactRepository {
     @Override
     public List<Contact> getAll() {
         return contactJpaRepository.findAll();
+    }
+
+    public List<Contact> getContactList(Type type) {
+        return contactJpaRepository.findContactsByPhone_type(type, Sort.by(Sort.Direction.ASC,"Name.last","Name.first"));
+        // return phoneJpaRepository.findPhonesByType(type);
     }
 }

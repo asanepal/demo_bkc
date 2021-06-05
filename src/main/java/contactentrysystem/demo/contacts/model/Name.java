@@ -1,14 +1,16 @@
 package contactentrysystem.demo.contacts.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Setter
 @Getter
 @Embeddable
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Name {
 
     private String first;

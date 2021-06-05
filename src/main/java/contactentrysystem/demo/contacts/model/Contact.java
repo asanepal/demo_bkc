@@ -36,14 +36,14 @@ private Name name;
         @AttributeOverride( name = "zip", column = @Column(name = "zip")),
 })
 private Address address;
-//@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL)
-//private List<Phone> phone;
-@Embedded
-@AttributeOverrides({
-        @AttributeOverride( name = "type", column = @Column(name = "type")),
-        @AttributeOverride( name = "phoneNum", column = @Column(name = "phoneNum"))
-})
-private Phone phone;
+@OneToMany(mappedBy = "contact", cascade = CascadeType.ALL)
+private List<Phone> phone;
+//@Embedded
+//@AttributeOverrides({
+//        @AttributeOverride( name = "type", column = @Column(name = "type")),
+//        @AttributeOverride( name = "phoneNum", column = @Column(name = "phoneNum"))
+//})
+//private Phone phone;
 @Column
 private String email;
 }

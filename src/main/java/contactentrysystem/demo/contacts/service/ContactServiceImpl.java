@@ -1,6 +1,8 @@
 package contactentrysystem.demo.contacts.service;
 
 import contactentrysystem.demo.contacts.model.Contact;
+import contactentrysystem.demo.contacts.model.Phone;
+import contactentrysystem.demo.contacts.model.Type;
 import contactentrysystem.demo.contacts.repository.ContactRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +41,10 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public  void deleteContactById(Long id) {
         contactRepositoryImpl.delete(id);
+    }
+
+    public List<Contact> getCallList() {
+        return contactRepositoryImpl.getContactList(Type.home);
     }
 
     public List<Contact> getAllContacts() {
