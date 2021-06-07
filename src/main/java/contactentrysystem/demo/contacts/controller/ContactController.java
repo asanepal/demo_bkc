@@ -2,9 +2,7 @@ package contactentrysystem.demo.contacts.controller;
 
 import contactentrysystem.demo.contacts.model.*;
 import contactentrysystem.demo.contacts.service.ContactService;
-import contactentrysystem.demo.contacts.service.PhoneService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -16,8 +14,6 @@ public class ContactController {
 
     @Autowired
     private ContactService contactService;
-    @Autowired
-    private PhoneService phoneService;
 
 
     public ContactController() {}
@@ -67,10 +63,6 @@ public class ContactController {
                          callList calllist = callList.builder().name(name).Number(p.getNumber()).build();
                          final_response.add(calllist);
                      }
-//                     else{
-//                         continue;
-//                     }
-
              }
 
 

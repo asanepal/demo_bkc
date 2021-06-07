@@ -16,35 +16,8 @@ public class PhoneRepositoryImpl implements PhoneRepository{
     @Autowired
     private PhoneJpaRepository phoneJpaRepository;
 
-    @Override
-    public Phone create(Phone phone) {
-        return phoneJpaRepository.saveAndFlush(phone);
-    }
-
-    @Override
-    public Phone get(Long id) {
-        return null;
-    }
-
-    @Override
-    public Phone update(Long id, Phone phone) {
-        return null;
-    }
-
-    @Override
-    public Phone delete(Long id) {
-        return null;
-    }
-
     public void deleteByContactId(Long contact_id) {
          phoneJpaRepository.deleteByContactId(contact_id);
     }
 
-//    @Override
-//    @Query(
-//            value = "SELECT * FROM phone p WHERE u.type = 1 JOIN p.contact_id ",
-//            nativeQuery = true)
-//    public List<Phone> findAllByTypeNative(Type type) {
-//        return phoneJpaRepository.findPhonesByType(type);
-//    }
 }
